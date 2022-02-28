@@ -6,7 +6,7 @@
 			"sources": [
 				{
 					"dataset": {
-						"referenceName": "AzureSqlTable1",
+						"referenceName": "DelimitedText1",
 						"type": "DatasetReference"
 					},
 					"name": "source1"
@@ -15,10 +15,21 @@
 			"sinks": [],
 			"transformations": [],
 			"scriptLines": [
-				"source(allowSchemaDrift: true,",
+				"source(output(",
+				"          Direction as string,",
+				"          Year as string,",
+				"          Date as string,",
+				"          Weekday as string,",
+				"          Country as string,",
+				"          Commodity as string,",
+				"          Transport_Mode as string,",
+				"          Measure as string,",
+				"          Value as string,",
+				"          Cumulative as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     isolationLevel: 'READ_UNCOMMITTED',",
-				"     format: 'table') ~> source1"
+				"     ignoreNoFilesFound: false) ~> source1"
 			]
 		}
 	}
