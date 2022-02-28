@@ -1,0 +1,60 @@
+{
+	"name": "CSVToSQLDataFlow",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "CSVSource"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "AzureSqlTable1",
+						"type": "DatasetReference"
+					},
+					"name": "AzureSQLDBDestination"
+				}
+			],
+			"transformations": [
+				{
+					"name": "DerivedColumn1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          Direction as string,",
+				"          Year as string,",
+				"          Date as string,",
+				"          Weekday as string,",
+				"          Country as string,",
+				"          Commodity as string,",
+				"          Transport_Mode as string,",
+				"          Measure as string,",
+				"          Value as string,",
+				"          Cumulative as string",
+				"     ),",
+				"     allowSchemaDrift: false,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> CSVSource",
+				"CSVSource derive(Date = toDate(Date,'MM/dd/yyyy','en-US'),",
+				"          Weekday = dayOfWeek(toDate(Date))) ~> DerivedColumn1",
+				"DerivedColumn1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     deletable:false,",
+				"     insertable:true,",
+				"     updateable:false,",
+				"     upsertable:false,",
+				"     format: 'table',",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true,",
+				"     errorHandlingOption: 'stopOnFirstError') ~> AzureSQLDBDestination"
+			]
+		}
+	}
+}

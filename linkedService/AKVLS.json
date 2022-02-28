@@ -1,0 +1,11 @@
+{
+	"name": "AKVLS",
+	"type": "Microsoft.DataFactory/factories/linkedservices",
+	"properties": {
+		"annotations": [],
+		"type": "AzureKeyVault",
+		"typeProperties": {
+			"baseUrl": "https://akvforadlsg2.vault.azure.net/"
+		}
+	}
+}

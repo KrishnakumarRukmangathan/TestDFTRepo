@@ -1,0 +1,9 @@
+{
+	"name": "ADFJioIndia",
+	"location": "jioindiawest",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "33bab730-cbd3-48fc-b84e-ccc153838939",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
