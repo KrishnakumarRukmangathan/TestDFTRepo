@@ -1,0 +1,9 @@
+{
+	"name": "adfforsqlmi",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "5cbd80ea-29db-427d-9b37-70bcedd20a19",
+		"tenantId": "72f988bf-86f1-41af-91ab-2d7cd011db47"
+	}
+}
